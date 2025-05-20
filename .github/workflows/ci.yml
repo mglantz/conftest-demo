@@ -34,11 +34,14 @@ jobs:
          SYSTEM=$(uname)
          wget "https://github.com/open-policy-agent/conftest/releases/download/v${LATEST_VERSION}/conftest_${LATEST_VERSION}_${SYSTEM}_${ARCH}.tar.gz"
          tar xzf conftest_${LATEST_VERSION}_${SYSTEM}_${ARCH}.tar.gz && echo "Extracted conftest tar archive"
-         echo "$PWD/conftest" >> $GITHUB_PATH
+         ls -la
+         echo "$PWD/conftest" >>$GITHUB_PATH
+         export $PATH:$PWD/conftest
 
 
       - name: Running Open Policy Agent test
         run: |
+          export $PATH:$PWD/conftest
           source $GITHUB_PATH
           cd $GITHUB_WORKSPACE
           echo "----------------------"
