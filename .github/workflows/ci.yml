@@ -38,6 +38,10 @@ jobs:
          echo "$PWD/conftest" >>$GITHUB_PATH
          chmod a+rx conftest
 
+      - name: Fetching OPA policy
+        run: |
+          git clone https://github.com/mglantz/conftest-policy policy
+
       - name: Running Open Policy Agent test
         run: |
           cd $GITHUB_WORKSPACE
