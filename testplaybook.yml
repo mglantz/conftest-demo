@@ -1,0 +1,8 @@
+---
+- name: Install MariaDB
+  hosts: dbservers
+  tasks:
+    - name: Install MariaDB-server
+      ansible.builtin.package:
+        name: MariaDB-server-10.8.4-1.fc36
+        state: present
