@@ -1,8 +1,10 @@
 ---
 - name: Install MariaDB
   hosts: dbservers
+  vars:
+    THEVAR="10.8.4-1.fc36"
   tasks:
     - name: Install MariaDB-server
       ansible.builtin.package:
-        name: MariaDB-server-10.8.4-1.fc36
+        name: "MariaDB-server-{{ THEVAR }}"
         state: present
