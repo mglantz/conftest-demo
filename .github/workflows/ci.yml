@@ -33,12 +33,13 @@ jobs:
          ARCH=$(arch)
          SYSTEM=$(uname)
          wget "https://github.com/open-policy-agent/conftest/releases/download/v${LATEST_VERSION}/conftest_${LATEST_VERSION}_${SYSTEM}_${ARCH}.tar.gz"
-         tar xzf conftest_${LATEST_VERSION}_${SYSTEM}_${ARCH}.tar.gz
+         tar xzf conftest_${LATEST_VERSION}_${SYSTEM}_${ARCH}.tar.gz && echo "Extracted conftest tar archive"
          echo "$PWD/conftest" >> $GITHUB_PATH
 
 
       - name: Running Open Policy Agent test
         run: |
+          . /$GITHUB_PATH
           cd $GITHUB_WORKSPACE
           echo "----------------------"
           echo "Running linting"
@@ -46,5 +47,5 @@ jobs:
           for playbook in $(ls *.yml)
           do
             echo "Running conftest on: $playbook"
-            conftest parse $playbook
+            conftest test $playbook
           done
