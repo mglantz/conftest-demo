@@ -36,13 +36,10 @@ jobs:
          tar xzf conftest_${LATEST_VERSION}_${SYSTEM}_${ARCH}.tar.gz && echo "Extracted conftest tar archive"
          ls -la
          echo "$PWD/conftest" >>$GITHUB_PATH
-         export $PATH:$PWD/conftest
-
+         chmod a+rx conftest
 
       - name: Running Open Policy Agent test
         run: |
-          export $PATH:$PWD/conftest
-          source $GITHUB_PATH
           cd $GITHUB_WORKSPACE
           echo "----------------------"
           echo "Running linting"
@@ -50,5 +47,5 @@ jobs:
           for playbook in $(ls *.yml)
           do
             echo "Running conftest on: $playbook"
-            conftest test $playbook
+            ./conftest test $playbook
           done
