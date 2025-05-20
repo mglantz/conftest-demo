@@ -39,7 +39,7 @@ jobs:
 
       - name: Running Open Policy Agent test
         run: |
-          . /$GITHUB_PATH
+          source $GITHUB_PATH
           cd $GITHUB_WORKSPACE
           echo "----------------------"
           echo "Running linting"
