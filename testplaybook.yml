@@ -1,5 +1,5 @@
 ---
-- name: Install MariaDB
+- name: Install MariaDB server
   hosts: dbservers
   tasks:
     - name: Install MariaDB-server
